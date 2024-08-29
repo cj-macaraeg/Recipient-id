@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
 const app = express().use(bodyParser.json()); // Middleware to parse JSON bodies
 
@@ -56,4 +57,7 @@ app.get('/webhook', (req, res) => {
 });
 
 // Listen for requests
-app.listen(3000, () => console.log('Webhook is listening on port 3000'));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
